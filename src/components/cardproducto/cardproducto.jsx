@@ -2,17 +2,27 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import "./cardproducto.css";
+import Chip from '@mui/material/Chip';
+
+
 
 
 const CardProducto = ({cardproducto}) => {
   return (
-    <card classname="cardstyle" key={cardproducto.id} >
+    <Card className="cardstyle" key={cardproducto.id} >
 
         <CardContent
-          sx={{displey: "flex", flexdirection: "column", gap: "10px", justifycontent: "center", alignitems: "center"}}>
+          sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          justifyContent: "center",
+         alignItems: "center"
+         }}
+>
 
-            <div classname="productocontent">
-            <Typography>{cardproducto?.nombre}</Typography>
+  <div className="productocontent">
+          <Typography>{cardproducto?.nombre}</Typography>
           <Typography>{cardproducto?.descripcion}</Typography>
           <Typography>{cardproducto?.precio}</Typography>
                
@@ -20,7 +30,7 @@ const CardProducto = ({cardproducto}) => {
          <Chip label={cardproducto?.estado} color="success" />
 
         </CardContent>
-    </card>
+    </Card>
   );
 }
 export default CardProducto;

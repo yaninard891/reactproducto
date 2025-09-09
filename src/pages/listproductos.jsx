@@ -11,11 +11,12 @@ import CardProducto from '../components/cardproducto/cardproducto.jsx';
 const ListProducto = () => {
   const [isloading, setIsLoading] = useState(false);
   const [listproductos, setlistproductos] = useState([]);
-  setlistproductos(response);
+  
 
   const handleproductos = async() => {
     const response = await getProductos();
     console.log(response);
+    setlistproductos(response);
     setIsLoading (false);
   };
 
@@ -25,18 +26,18 @@ setIsLoading(true);
 }, []);
 
 if(isloading){
-  return 
-  <CircularProgress color="secondary" />
+  return <CircularProgress color="secondary" />
 
 }
   return (
     <div
-      classname="listproductos">
-        
-        {listloading && 
+      className="listproductos">
+      
+ 
+        {!isloading && 
         listproductos.length>0 && 
         listproductos?.map((cardproducto)=>(
-          <cardproducto key={cardproducto._id} cardproducto={cardproducto}/>
+          <CardProducto key={cardproducto._id} cardproducto={cardproducto}/>
         ))}
     </div>
 

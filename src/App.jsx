@@ -65,8 +65,9 @@ function App() {
       </Drawer>
 
       <Routes>
-  <Route path="/" element={<h1>Página principal</h1>} />
-  <Route path="/productos" element={<ListProducto />} />
+        <Route path="/" element={<ListProducto />} />
+        <Route path="/productos" element={<ListProducto />} />
+  
 </Routes>
     </>
   );

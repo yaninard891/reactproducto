@@ -1,11 +1,6 @@
-.productocontent{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 8px;
-}
+
+
 
 .cardstyle{
     cursor: pointer;
 }
-
