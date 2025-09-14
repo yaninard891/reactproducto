@@ -16,11 +16,37 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 import MailIcon from '@mui/icons-material/Mail';
 import Navbar from './components/Navbar';
-import { Routes, Route } from 'react-router-dom';
-import ListProducto from './pages/listproductos';
+import { Routes, Route, NavLink} from 'react-router-dom';
+import ListProducts from './pages/listproducts';
+import {Products} from './pages/products';
+import { AvailableProducts } from './pages/AvailableProducts/AvailableProducts';
+import { Searcher } from './pages/Searcher/Searcher';
+import { LoadProduct } from './pages/LoadProduct/LoadProduct';
 
 function App() {
+
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+
+  const navbar=[{
+   path: "/",
+    name:"Listado de producto"
+},
+
+{
+  path:"/searcher",
+  name:"Buscar producto"
+},
+
+{
+  path: "/availableproducts",
+  name: "productos disponibles"
+},
+
+{
+  path: "/loadproduct",
+  name: "cargar producto"
+},
+];
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -41,13 +67,21 @@ function App() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Listado de productos', 'Buscar Producto', 'Producto Vendido'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {navbar.map(
+          ({path, name}, index) => (
+            <ListItem key={path} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <NavLink to={path}
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <ListItemText primary={name} />
+              </NavLink>
+              
             </ListItemButton>
           </ListItem>
         ))}
@@ -65,10 +99,12 @@ function App() {
       </Drawer>
 
       <Routes>
-        <Route path="/" element={<ListProducto />} />
-        <Route path="/productos" element={<ListProducto />} />
-  
-</Routes>
+        <Route path="/" element={<ListProducts />} />
+        <Route path="/Productos/:id" element={<Products/>} />
+        <Route path="/availableproducts" element={<AvailableProducts/>} />
+        <Route path="/searcher" element={<Searcher/>} />
+        <Route path="/loadproduct" element={<LoadProduct/>} />
+       </Routes>
     </>
   );
 }

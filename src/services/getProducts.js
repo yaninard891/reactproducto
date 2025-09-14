@@ -1,8 +1,9 @@
-export const PRODUCTOS_API = import.meta.env.VITE_PRODUCTOS_API;
+export const PRODUCTOS_API = "https://integradorapi.onrender.com/producto";
 
-export const getProductos = async () => {
+export const getProducts = async () => {
   try {
-    const response = await fetch(PRODUCTOS_API);
+    const response = await fetch("https://integradorapi.onrender.com/producto");
+
     if (!response.ok) throw new Error('Error al obtener productos');
     const result = await response.json();
     return result;
