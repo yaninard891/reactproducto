@@ -1,0 +1,88 @@
+import {Button,Card,CircularProgress,Dialog,MenuItem,Stack,TextField,} from "@mui/material";
+import { ESTADOS } from "../LoadProduct/LoadProduct";
+import { DatePicker } from "@mui/x-date-pickers";
+import { useChangeData } from "../../hooks/useChangeData";
+export const ChangeProductData = ({open, productId, ProductSelected, setOpen}) => {
+const {productToModify, handleChange, handleSubmit, setproductToModify}= useChangeData(ProductSelected, productId);
+const isFromDate= true;
+     
+    return (
+        <Dialog open={open} onClose={() => setOpen(!open)}>
+    
+     <Card component={"form"} onSubmit={handleSubmit}>
+        <Stack spacing={2}>
+                    <TextField 
+                    label="Nombre del producto"
+                    name="nombre"
+                    value={productToModify?.nombre}
+                    onChange={(e)=>handleChange(e)}
+                    required
+                    error="Ingresa un nombre valido"
+                    fullWidth
+                    />
+                    <TextField 
+                    label="Precio del producto"
+                    name="precio"
+                    value={productToModify?.precio}
+                    onChange={(e)=>handleChange(e)}
+                    required
+                    error="Ingresa un precio valido"
+                    fullWidth
+                    />
+                    <TextField 
+                     label="Cantidad del producto"
+                    name="cantidad"
+                    value={productToModify?.cantidad}
+                    onChange={(e)=>handleChange(e)}
+                    required
+                    error="Ingresa una cantidad valida"
+                    fullWidth
+                    />
+                    <TextField 
+                     label="Categoria del producto"
+                    name="categoria"
+                    value={ProductSelected?.categoria}
+                    onChange={(e)=>handleChange(e)}
+                    required
+                    error="Ingresa una categoria valida"
+                    fullWidth
+                    />
+                    <DatePicker
+            label="fechaIngreso"
+            name="fechaIngreso"
+            value={productToModify?.fechaIngreso}
+            onChange={(newDate) => handleChange(newDate, isFromDate)}
+          />
+          <DatePicker
+        
+            label="fechaVenta"
+            name="fechaVenta"
+            value={productToModify?.fechaVenta}
+            onChange={(newDate) => handleChange(newDate, isFromDate)}
+          />
+        
+                    <TextField
+                    select
+                     label="Estado del producto"
+                    name={ProductSelected?.estado}
+                    onChange={(e)=>handleChange(e)}
+                    required
+                    
+                    fullWidth
+                    >
+                        {ESTADOS.map((opt) => {
+                            return(
+                            <MenuItem key={opt} value={opt}>{opt}</MenuItem>);
+                        })
+                        }
+
+                    </TextField>
+                    <Button type="button" variant="text" disabled={false}>Limpiar</Button>
+                    <Button type="submit" variant="text" disabled={false}>
+                        {"Enviar"}
+                    </Button>
+                    </Stack>
+                    </Card>
+                </Dialog>
+                );
+                };

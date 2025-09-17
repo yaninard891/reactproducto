@@ -1,5 +1,6 @@
 import { Button, Card, CardHeader, CardContent, Stack, TextField, MenuItem, CircularProgress } from "@mui/material";
 import { useLoadProduct } from "../../hooks/useLoadProduct";
+import { use } from "react";
 
 
 
@@ -13,11 +14,10 @@ const initialState = {
     FechaDeVenta:"",
 };
 
-const ESTADOS=[ "disponible", "agotado"];
+export const ESTADOS=[ "disponible", "agotado"];
 
 export const LoadProduct = () => {
     const {handleChange, handleSubmit, valueProduct, loading} = useLoadProduct(initialState);
-
 
     return <Card component="form" onSubmit={handleSubmit} noValidate >
         <CardHeader title="Nuevo Producto" subhader="Cargar un nuevo producto" onSubmit={handleSubmit}/>

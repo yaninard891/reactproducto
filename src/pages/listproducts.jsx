@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardProducts from '../components/cardproducts/cardproducts.jsx';
 import { useNavigate } from 'react-router-dom';
+//import { getProductMockup } from '../mockup/getProductMockup.js';
 
 
 const ListProducts = () => {
@@ -14,7 +15,7 @@ const ListProducts = () => {
   const [listproducts, setlistproducts] = useState([]);
   
 
-  const handleproducts = async() => {
+ const handleproducts = async() => {
     const response = await getProducts();
     console.log(response);
     setlistproducts(response);
@@ -28,8 +29,11 @@ const ListProducts = () => {
 
 useEffect(() => {
 setIsLoading(true);
-    handleproducts();
-}, []);
+setTimeout(() => {
+  //setProducts(getProductMockup);
+  setIsLoading(false);
+},500)
+},[]);
 
 if(isloading){
   return <CircularProgress color="secondary" />
@@ -41,10 +45,11 @@ if(isloading){
       
  
         {!isloading && 
-        listproducts.length>0 && 
-        listproducts?.map((cardproducts)=>(
-          <CardProducts  key={cardproducts._id} cardproducts={cardproducts} handleRedirectToDetails={handleRedirectToDetails}/>
-        ))}
+       listproducts.length > 0 &&
+      listproducts.map((cardproduct) => (
+          <CardProducts  key={cardproduct._id} cardproducts={cardproducts} handleRedirectToDetails={handleRedirectToDetails}/>
+      ))
+    }
     </div>
 
 );
