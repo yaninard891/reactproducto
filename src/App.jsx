@@ -39,12 +39,12 @@ function App() {
 
 {
   path: "/availableproducts",
-  name: "productos disponibles"
+  name: "Productos Disponibles"
 },
 
 {
-  path: "/loadproduct",
-  name: "cargar producto"
+  path: "/loadProduct",
+  name: "Cargar Producto"
 },
 ];
 
@@ -99,11 +99,11 @@ function App() {
       </Drawer>
 
       <Routes>
-        <Route path="/" element={<ListProducts />} />
+        <Route index path="/" element={<ListProducts />} />
         <Route path="/Productos/:id" element={<Products/>} />
         <Route path="/availableproducts" element={<AvailableProducts/>} />
         <Route path="/searcher" element={<Searcher/>} />
-        <Route path="/loadproduct" element={<LoadProduct/>} />
+        <Route path="/loadProduct" element={<LoadProduct/>} />
        </Routes>
     </>
   );

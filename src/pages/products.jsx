@@ -1,32 +1,28 @@
-import Typography from "@mui/material/Typography";
-import { useEffect } from "react";
-import {useParams} from "react-router-dom"
-import { getProduct } from "../services/getProduct";
-import { useState } from "react";
+import {Chip, Divider,Typography} from "@mui/material";
+import { useProductSelected } from "../hooks/useProductSelected";
+import "./products.css";
 
 
 export const Products = () => {
-    const {id} = useParams();
-    const [ProductSelected, setproductSelected]= useState();
-    
+    const {ProductSelected} = useProductSelected();
+   
 
-    useEffect(() => {
-    const handleproducts = async() => {
-        const result = await getProduct(id);
-        setproductSelected(result);
-    };
-
-        handleproducts();
-    },
-    [id]);
-
+console.log(ProductSelected);
 
     return (
-    <div>
-    <div>
-    <Typography> {id}
-    </Typography>
+    <div className="conteiner">
+      <div className="cardProductSelected">
+       <div className="conteinerTitle">
+
+      <Typography> {ProductSelected?.nombre} - {ProductSelected?.precio} </Typography>  
+      <Typography> {ProductSelected?.categoria} </Typography>
+    </div>
+    
+    <Divider/>
+    <div className="conteinerTitle">
+    <Chip label={ProductSelected?.estado} color="success" />
     </div>
     </div>
-  );
+    </div>
+    )
 };

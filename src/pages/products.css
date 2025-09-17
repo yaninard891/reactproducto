@@ -1,0 +1,28 @@
+.cardProductSelected {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgb(129, 124, 124);
+    border-radius: 24px;
+    padding: 16px;
+}
+
+.conteiner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    
+    
+
+}
+
+.conteinerTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    
+}

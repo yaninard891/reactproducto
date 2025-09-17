@@ -7,4 +7,4 @@ export const getProduct = async (ProductId) => {
 
     const result = await response.json();
     return result;
-  }
+  };
