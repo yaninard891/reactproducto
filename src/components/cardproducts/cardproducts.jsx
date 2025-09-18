@@ -1,4 +1,5 @@
-import {Card, CardContent, Chip, Typography} from '@mui/material';
+import {Card, CardContent, Chip, Typography} from "@mui/material"
+
 
 
 import "./cardproducts.css";
@@ -8,7 +9,7 @@ import "./cardproducts.css";
 
 export const CardProduct = ({handleRedirectToDetails, cardproduct}) => {
   return (
-    <Card className="cardstyle" key={cardproduct._id} onClick={() => handleRedirectToDetails(cardproduct)}>
+    <Card className="cardstyle"  onClick={() => handleRedirectToDetails(cardproduct)}>
 
         <CardContent
           sx={{

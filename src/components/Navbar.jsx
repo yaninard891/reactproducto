@@ -35,7 +35,7 @@ export const Navbar = ({ setIsOpenDrawer }) => {
           color={theme === STATE.LIGHT ? "secondary": "textPrimary"}>
             PRODUCTOS
           </Typography>
-          <LigthModeIcon/>
+          <LightModeIcon/>
           <Switch
           defaultChecked color="secondary"
           onClick={()=>

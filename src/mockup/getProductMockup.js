@@ -1,4 +1,4 @@
-export const getBookMockup=
+export const getProductMockup=
 [
   {
     _id: "68c506f453083fe931ca7bba",

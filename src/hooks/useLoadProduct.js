@@ -9,7 +9,7 @@ export const useLoadProduct = (initialState) => {
     const navigate= useNavigate();
 const [valueProduct, setValueProduct] = useState(initialState);
     const [loading, setLoading] = useState(false);
-    const {product, setProduct}= useProductContext();
+    const {products, setProduct}= useProductContext();
    
 
 const handleChange = (e) => {
