@@ -1,7 +1,7 @@
 const PRODUCTOS_API = import.meta.env.VITE_PRODUCTOS_API
 const AUTH_API = import.meta.env.VITE_AUTH_API
 
-export const postProducts = async (body) => {
+/*export const postProducts = async (body) => {
 
   
     const response = await fetch(`${PRODUCTOS_API}`,{
@@ -15,4 +15,4 @@ export const postProducts = async (body) => {
 
     const result = await response.json();
     return result;
-  };
+  };*/

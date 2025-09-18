@@ -1,36 +1,35 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import {Card, CardContent, Chip, Typography} from '@mui/material';
+
+
 import "./cardproducts.css";
-import Chip from '@mui/material/Chip';
 
 
 
 
-const CardProducts = ({handleRedirectToDetails, cardproducts}) => {
+export const CardProduct = ({handleRedirectToDetails, cardproduct}) => {
   return (
-    <Card className="cardstyle" onClick={() => handleRedirectToDetails(cardproducts)}>
+    <Card className="cardstyle" key={cardproduct._id} onClick={() => handleRedirectToDetails(cardproduct)}>
 
         <CardContent
           sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
+          gap: "24px",
           justifyContent: "center",
-         alignItems: "center"
+         alignItems: "flex-start"
          }}
 >
 
-  <div className="productscontent">
-          <Typography>{cardproducts?.nombre}</Typography>
-          <Typography>{cardproducts?.descripcion}</Typography>
-          <Typography>{cardproducts?.precio}</Typography>
+  <div className="productContent">
+          <Typography>{cardproduct?.nombre}</Typography>
+          <Typography>{cardproduct?.descripcion}</Typography>
+          <Typography>{cardproduct?.precio}</Typography>
                
             </div>
-         <Chip label={cardproducts?.estado} color="success" />
+         <Chip label={cardproduct?.estado} color="success" />
 
         </CardContent>
     </Card>
   );
-}
-export default CardProducts;
+};
+

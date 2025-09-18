@@ -1,6 +1,8 @@
 import { Button, Card, CardHeader, CardContent, Stack, TextField, MenuItem, CircularProgress } from "@mui/material";
 import { useLoadProduct } from "../../hooks/useLoadProduct";
-import { use } from "react";
+
+import {CardProduct } from "../../components/cardproducts/cardproducts";
+
 
 
 
@@ -14,13 +16,21 @@ const initialState = {
     FechaDeVenta:"",
 };
 
-export const ESTADOS=[ "disponible", "agotado"];
+export const ESTADOS= ["disponible", "agotado"];
+
 
 export const LoadProduct = () => {
-    const {handleChange, handleSubmit, valueProduct, loading} = useLoadProduct(initialState);
+    const {handleChange, handleSubmit, valueProduct, loading, products, handleRedirectToDetail} = useLoadProduct(initialState);
 
-    return <Card component="form" onSubmit={handleSubmit} noValidate >
-        <CardHeader title="Nuevo Producto" subhader="Cargar un nuevo producto" onSubmit={handleSubmit}/>
+    return (
+    <div>
+        {products?.length>0 && products?.map((cardProduct)=>(
+          <CardProduct
+          cardProduct={cardProduct} 
+          handleRedirectToDetail={handleRedirectToDetail}/>
+        ))}
+        <Card component="form" onSubmit={handleSubmit} noValidate >
+        <CardHeader title="Nuevo Producto" subhader="Cargar un nuevo producto" />
         <CardContent>
 
             <Stack spacing={2}>
@@ -37,7 +47,7 @@ export const LoadProduct = () => {
                 label="Precio del producto"
                 name="precio"
                 value={valueProduct.precio}
-                onChange={handleChange}
+                onChange={(e)=>handleChange(e)}
                 required
                 error="Ingresa un precio valido"
                 fullWidth
@@ -46,7 +56,7 @@ export const LoadProduct = () => {
                  label="Cantidad del producto"
                 name="cantidad"
                 value={valueProduct.cantidad}
-                onChange={handleChange}
+                onChange={(e)=>handleChange(e)}
                 required
                 error="Ingresa una cantidad valida"
                 fullWidth
@@ -55,7 +65,7 @@ export const LoadProduct = () => {
                  label="Categoria del producto"
                 name="categoria"
                 value={valueProduct.categoria}
-                onChange={handleChange}
+                onChange={(e)=>handleChange(e)}
                 required
                 error="Ingresa una categoria valida"
                 fullWidth
@@ -63,7 +73,7 @@ export const LoadProduct = () => {
                 <TextField
                 select
                  label="Estado del producto"
-                name="Estado"
+                name="estado"
                 value={valueProduct.estado}
                 onChange={handleChange}
                 required
@@ -71,7 +81,7 @@ export const LoadProduct = () => {
                 fullWidth
                 >
                     {ESTADOS.map((opt) => {
-                        return <MenuItem key={opt} value={opt}>{opt}</MenuItem>
+                        return (<MenuItem key={opt} value={opt}>{opt}</MenuItem>);
                     })}
                 </TextField>
                 <Button type="button" variant="text" disabled={loading}>Limpiar</Button>
@@ -83,4 +93,6 @@ export const LoadProduct = () => {
             </Stack>
         </CardContent>
     </Card>;
+    </div>
+   );
 };

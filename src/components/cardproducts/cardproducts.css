@@ -1,5 +1,15 @@
-
+.productContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 12px;
+}
 
 .cardstyle{
     cursor: pointer;
 }
+.cardStyle :focus{
+    outline: 2px solid rgb(44, 44, 150);
+box-shadow: 0 0 5px rgb(43, 43, 144);;
+}
+

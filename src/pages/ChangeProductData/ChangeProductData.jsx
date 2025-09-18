@@ -1,9 +1,11 @@
-import {Button,Card,CircularProgress,Dialog,MenuItem,Stack,TextField,} from "@mui/material";
+import {Button,Card, CircularProgress ,Dialog,MenuItem,Stack,TextField,} from "@mui/material";
 import { ESTADOS } from "../LoadProduct/LoadProduct";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useChangeData } from "../../hooks/useChangeData";
+
+
 export const ChangeProductData = ({open, productId, ProductSelected, setOpen}) => {
-const {productToModify, handleChange, handleSubmit, setproductToModify}= useChangeData(ProductSelected, productId);
+const {productToModify, handleChange, handleSubmit, setProductToModify}= useChangeData(ProductSelected, productId);
 const isFromDate= true;
      
     return (
@@ -41,7 +43,7 @@ const isFromDate= true;
                     <TextField 
                      label="Categoria del producto"
                     name="categoria"
-                    value={ProductSelected?.categoria}
+                    value={productToModify?.categoria}
                     onChange={(e)=>handleChange(e)}
                     required
                     error="Ingresa una categoria valida"

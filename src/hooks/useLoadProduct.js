@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { postProducts } from "../services/postProducts";
+//import { postProducts } from "../services/postProducts";
 import {useNavigate} from "react-router";
-import { putProducts } from "../services/putProduct";
+
+import {useProductContext} from "../context/ProductContext";
 
 
 export const useLoadProduct = (initialState) => {
     const navigate= useNavigate();
 const [valueProduct, setValueProduct] = useState(initialState);
-    const[loading, setLoading] = useState(false);
-    //const {product, setproduct}= useProductContext();
-    const ESTADOS=[ "Disponible", "Agotado"];
+    const [loading, setLoading] = useState(false);
+    const {product, setProduct}= useProductContext();
+   
 
 const handleChange = (e) => {
     console.log(e.target);
@@ -31,7 +32,7 @@ const handleSubmit = async(e) => {
         //FechaDeVenta: productToModify.FechaDeVenta.toISOString(),
     };
     setLoading(true);
-    await postProducts(body);
+    //await postProducts(body);
     setLoading(false);
     setProduct ((prevProduct)=>[body, ...prevProduct])
     setValueProduct(initialState);
@@ -41,10 +42,11 @@ const handleSubmit = async(e) => {
     }
 
 } ;
-const handleRedirectToDetail=(carProduct)=>{
-    console.log(carProduct);
-    navigate("/product/${carProduct?._id}");
+const handleRedirectToDetail=(cardProduct)=>{
+    console.log(cardProduct);
+    navigate(`/product/${cardProduct?._id}`);
+
 }
 
-    return{handleSubmit, handleChange, valueProduct, loading, product, handleRedirectToDetail};
+    return{handleSubmit, handleChange, valueProduct, loading, products, handleRedirectToDetail};
 };

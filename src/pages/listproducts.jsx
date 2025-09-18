@@ -1,57 +1,68 @@
 import { useEffect, useState } from 'react';
-import { getProducts } from '../services/getProducts.js';
-import CircularProgress from '@mui/material/CircularProgress';
+
+
 import './listproducts.css';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardProducts from '../components/cardproducts/cardproducts.jsx';
-import { useNavigate } from 'react-router-dom';
-//import { getProductMockup } from '../mockup/getProductMockup.js';
+import { Card, CardContent, CircularProgress, Typography} from "@mui/material";
+
+import { useNavigate } from 'react-router';
+import { getProductMockup } from '../mockup/getProductMockup';
+import {useProductContext} from "../context/ProductContext";
+import {STATE, useThemeContext} from "../context/ThemeContext";
 
 
-const ListProducts = () => {
+export const ListProducts() {
+  const {theme}= useThemeContext();
   const navigate = useNavigate();
   const [isloading, setIsLoading] = useState(false);
-  const [listproducts, setlistproducts] = useState([]);
+  const {products, setProducts}=useProductContext();
+
   
 
- const handleproducts = async() => {
+
+  /*const handleproducts = async () => {
     const response = await getProducts();
     console.log(response);
     setlistproducts(response);
-    setIsLoading (false);
+    setIsLoading(false);
+  };*/
+
+  const handleRedirectToDetails = (cardproducts) => {
+    navigate(`/productos/${cardproducts?._id}`);
+
   };
 
- const handleRedirectToDetails= (cardproducts)=>{ 
-  navigate(`/productos/${cardproducts?._id}`);
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+    setProducts(getProductMockup);
+      setIsLoading(false);
+    }, 500);
+  }, []);
 
-  } 
+  if (isloading) {
+    return <CircularProgress color="secondary" />;
 
-useEffect(() => {
-setIsLoading(true);
-setTimeout(() => {
-  //setProducts(getProductMockup);
-  setIsLoading(false);
-},500)
-},[]);
-
-if(isloading){
-  return <CircularProgress color="secondary" />
-
-}
+  }
   return (
     <div
-      className="listproducts">
-      
- 
-        {!isloading && 
-       listproducts.length > 0 &&
-      listproducts.map((cardproduct) => (
-          <CardProducts  key={cardproduct._id} cardproducts={cardproducts} handleRedirectToDetails={handleRedirectToDetails}/>
-      ))
-    }
+      className="listproducts" style={{
+        backgroundColor: theme === STATE.LIGHT ? "#eadadaff" : "#000000"
+      }}
+      >
+
+
+      {!isloading &&
+        products.length > 0 &&
+        products.map((cardproduct) => (
+          <CardProducts 
+          cardproduct={cardproduct
+
+          }
+          handleRedirectToDetails={handleRedirectToDetails}
+          />
+        ))}
     </div>
 
-);
+  );
 };
  export default ListProducts;

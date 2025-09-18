@@ -1,6 +1,6 @@
 export const PRODUCTOS_API = "https://integradorapi.onrender.com/producto";
 
-export const getProducts = async () => {
+/*export const getProducts = async () => {
   try {
     const response = await fetch("https://integradorapi.onrender.com/producto");
 h
@@ -11,4 +11,4 @@ h
     console.error('Error en getProductos:', error);
     return [];
   }
-};
+};*/

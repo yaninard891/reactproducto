@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
+import {useProductContext} from "../context/ProductContext";
+
 
 
 const initialState = {
@@ -13,7 +15,7 @@ const initialState = {
 };
 export const useChangeData = (productSelected, productId) => {
     const [productToModify, setproductToModify]= useState(initialState);
-    //const {setProductSelected}= useProductContext();
+    const {setProductSelected}= useProductContext();
     const handleChange=(e, isFromDate)=>{
         if(isFromDate){
             setproductToModify((v)=>({...v,
@@ -39,7 +41,7 @@ export const useChangeData = (productSelected, productId) => {
         FechaDeIngreso: productToModify.FechaDeIngreso.toISOString(),
         FechaDeVenta: productToModify.FechaDeVenta.toISOString(),
                 };
-                await putProduct (productId, body);
+                //await putProduct (productId, body);
                 setProductSelected((product)=>({
                     ...product,
                     ...body,
@@ -61,12 +63,10 @@ export const useChangeData = (productSelected, productId) => {
             FechaDeIngreso: newFechaIngreso ?? null,
             FechaDeVenta: newFechaVenta ?? null,
         }));
-    }, [productSelected]);
+    }, 
+    [productSelected]);
 
     return{
 productToModify,
-handleChange,
-handleSubmit,
-setproductToModify,
-    };
+handleChange, handleSubmit, setproductToModify};
 };
