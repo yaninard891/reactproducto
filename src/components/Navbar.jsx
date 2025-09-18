@@ -7,7 +7,8 @@ import Typography from '@mui/material/Typography';
 import {Button, Switch} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import LigthModeIcon from "@mui/icons-material/LigthMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+
 import {STATE, useThemeContext} from "../context/ThemeContext"
 
 export const Navbar = ({ setIsOpenDrawer }) => {

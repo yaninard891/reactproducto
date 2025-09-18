@@ -10,7 +10,7 @@ import {useProductContext} from "../context/ProductContext";
 import {STATE, useThemeContext} from "../context/ThemeContext";
 
 
-export const ListProducts() {
+export const listproducts=()=> {
   const {theme}= useThemeContext();
   const navigate = useNavigate();
   const [isloading, setIsLoading] = useState(false);
@@ -65,4 +65,4 @@ export const ListProducts() {
 
   );
 };
- export default ListProducts;
+ export default listproducts;
