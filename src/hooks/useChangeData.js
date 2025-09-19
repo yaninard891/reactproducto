@@ -10,17 +10,17 @@ const initialState = {
     cantidad:"",
     categoria:"",
     estado:"disponible",
-    FechaDeIngreso: dayjs(new Date()),
-    FechaDeVenta: dayjs(new Date()),
+    FechaIngreso: dayjs(new Date()),
+    FechaVenta: dayjs(new Date()),
 };
 export const useChangeData = (productSelected, productId) => {
     const [productToModify, setproductToModify]= useState(initialState);
-    const {setProductSelected}= useProductContext();
+    const { setProduct, setProductSelected, product}= useProductContext();
     const handleChange=(e, isFromDate)=>{
         if(isFromDate){
             setproductToModify((v)=>({...v,
-                FechaDeIngreso: dayjs(e),
-                FechaDeVenta: dayjs(e),
+                FechaIngreso: dayjs(e),
+                FechaVenta: dayjs(e),
             }));
             return;
         }
@@ -38,14 +38,21 @@ export const useChangeData = (productSelected, productId) => {
         cantidad: Number(productToModify.cantidad.trim()),
         categoria: productToModify.categoria.trim(),
         estado: productToModify.estado,
-        FechaDeIngreso: productToModify.FechaDeIngreso.toISOString(),
-        FechaDeVenta: productToModify.FechaDeVenta.toISOString(),
+        FechaIngreso: productToModify.FechaIngreso.toISOString(),
+        FechaVenta: productToModify.FechaVenta.toISOString(),
                 };
+
+                const updatedProducts= product.map((p)=>
+                p._id === productId ? {...p, ...body}:p);
+
                 //await putProduct (productId, body);
+                setProduct(updatedProducts)
                 setProductSelected((product)=>({
                     ...product,
                     ...body,
                 }));
+                console.log("Producto actualizado:", product);
+
                 setproductToModify(initialState);
             } catch (error) {
                 console.error(error);
@@ -54,14 +61,14 @@ export const useChangeData = (productSelected, productId) => {
             };
 
     useEffect(()=>{
-        const newFechaIngreso= dayjs(productSelected?.newFechaIngreso);
+        const newFechaIngreso= dayjs(productSelected?.FechaIngreso);
         const newFechaVenta= dayjs(productSelected?.FechaDeVenta);
 
         setproductToModify((prev)=>({
             ...prev,
             ...productSelected,
-            FechaDeIngreso: newFechaIngreso ?? null,
-            FechaDeVenta: newFechaVenta ?? null,
+            FechaIngreso: newFechaIngreso ?? null,
+            FechaVenta: newFechaVenta ?? null,
         }));
     }, 
     [productSelected]);

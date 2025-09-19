@@ -7,7 +7,7 @@ import {useProductContext} from "../context/ProductContext"
 
 export const useProductSelected = () => {
  const {id} = useParams();
-   const [ProductSelected, setProductSelected]= useProductContext();
+   const {productSelected, setProductSelected}= useProductContext();
     const [open, setOpen]=useState(false);
 
 
@@ -26,7 +26,7 @@ useEffect(()=> {
     [id]);
 
     return {
-        ProductSelected,
+        productSelected,
         id,
         open, setOpen};
     };

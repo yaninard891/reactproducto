@@ -1,23 +1,22 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-
 export const ProductContext= createContext();
 export const useProductContext=()=> useContext(ProductContext);
 
 
 export const ProductProvider=({children})=>{
-const [products, setProducts]=useState([])
+const [product, setProduct]=useState([])
 const [productSelected, setProductSelected] = useState();
 
 
 useEffect(() => {
-    const storedProducts = localStorage.getItem("products");
+    const storedProducts = localStorage.getItem("product");
 
     try {
       const parsed = JSON.parse(storedProducts);
       if (Array.isArray(parsed)) {
-        setProducts(parsed);
+        setProduct(parsed);
       }
     }catch (error) {
         console.error(error)
@@ -26,16 +25,16 @@ useEffect(() => {
 
   
   useEffect(() => {
-    if (products.length > 0) {
-      localStorage.setItem("products", JSON.stringify(products));
+    if (product.length > 0) {
+      localStorage.setItem("product", JSON.stringify(product));
     }
-  }, [products]);
+  }, [product]);
 
 return (
     <ProductContext.Provider
       value={{
-        products,
-        setProducts,
+        product,
+        setProduct,
         productSelected,
         setProductSelected,
       }}

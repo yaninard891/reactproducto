@@ -15,7 +15,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import Navbar from './components/Navbar';
 import { Routes, Route, NavLink} from 'react-router-dom';
 import ListProducts from './pages/listproducts';
-import {Products} from './pages/products';
+import {Product} from "./pages/products"
 import { AvailableProducts } from './pages/AvailableProducts/AvailableProducts';
 import { Searcher } from './pages/Searcher/Searcher';
 import { LoadProduct } from './pages/LoadProduct/LoadProduct';
@@ -100,7 +100,7 @@ function App() {
 
       <Routes>
         <Route index path="/" element={<ListProducts />} />
-        <Route path="/Productos/:id" element={<Products/>} />
+        <Route path="/Productos/:id" element={<Product/>} />
         <Route path="/availableproducts" element={<AvailableProducts/>} />
        
         <Route path="/searcher" element={<Searcher/>} />

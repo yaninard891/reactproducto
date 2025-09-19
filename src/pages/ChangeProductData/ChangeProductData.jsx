@@ -1,18 +1,19 @@
-import {Button,Card, CircularProgress ,Dialog,MenuItem,Stack,TextField,} from "@mui/material";
+import {Button, Select, Card, CircularProgress ,Dialog,MenuItem,Stack,TextField,} from "@mui/material";
 import { ESTADOS } from "../LoadProduct/LoadProduct";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useChangeData } from "../../hooks/useChangeData";
 
 
-export const ChangeProductData = ({open, productId, ProductSelected, setOpen}) => {
-const {productToModify, handleChange, handleSubmit, setProductToModify}= useChangeData(ProductSelected, productId);
+export const ChangeProductData = ({open, productId, productSelected, setOpen}) => {
+const {productToModify, handleChange, handleSubmit}= useChangeData(productSelected, productId);
 const isFromDate= true;
      
     return (
-        <Dialog open={open} onClose={() => setOpen(!open)}>
-    
-     <Card component={"form"} onSubmit={handleSubmit}>
-        <Stack spacing={2}>
+        <Dialog open={open} onClose={() => setOpen(!open)} >
+     <Card component={"form"} onSubmit={handleSubmit} sx={{ minWidth: 275 }}
+
+>
+        <Stack spacing={1} >
                     <TextField 
                     label="Nombre del producto"
                     name="nombre"
@@ -66,8 +67,9 @@ const isFromDate= true;
                     <TextField
                     select
                      label="Estado del producto"
-                    name={ProductSelected?.estado}
-                    onChange={(e)=>handleChange(e)}
+                    name="estado"
+                    value={productToModify?.estado}
+                    onChange={handleChange}
                     required
                     
                     fullWidth
@@ -84,7 +86,9 @@ const isFromDate= true;
                         {"Enviar"}
                     </Button>
                     </Stack>
+
                     </Card>
+
                 </Dialog>
                 );
                 };

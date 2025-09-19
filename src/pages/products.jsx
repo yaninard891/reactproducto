@@ -4,7 +4,7 @@ import "./products.css";
 import { ChangeProductData } from "./ChangeProductData/ChangeProductData";
 
 
-export const Products = () => {
+export const Product = () => {
     const {ProductSelected, id, open, setOpen} = useProductSelected();
    
 

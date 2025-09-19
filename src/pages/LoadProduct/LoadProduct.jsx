@@ -11,20 +11,20 @@ const initialState = {
     precio:"",
     cantidad:"",
     categoria:"",
-    estado:"disponible",
-    FechaDeIngreso:"",
-    FechaDeVenta:"",
+    estado:" ",
+    FechaIngreso:"",
+    FechaVenta:"",
 };
 
 export const ESTADOS= ["disponible", "agotado"];
 
 
 export const LoadProduct = () => {
-    const {handleChange, handleSubmit, valueProduct, loading, products, handleRedirectToDetail} = useLoadProduct(initialState);
+    const {handleChange, handleSubmit, valueProduct, loading, product, handleRedirectToDetail} = useLoadProduct(initialState);
 
     return (
     <div>
-        {products?.length>0 && products?.map((cardProduct)=>(
+        {product?.length>0 && product?.map((cardProduct)=>(
           <CardProduct
           cardProduct={cardProduct} 
           handleRedirectToDetail={handleRedirectToDetail}/>
@@ -61,15 +61,7 @@ export const LoadProduct = () => {
                 error="Ingresa una cantidad valida"
                 fullWidth
                 />
-                <TextField 
-                 label="Categoria del producto"
-                name="categoria"
-                value={valueProduct.categoria}
-                onChange={(e)=>handleChange(e)}
-                required
-                error="Ingresa una categoria valida"
-                fullWidth
-                />
+             
                 <TextField
                 select
                  label="Estado del producto"
