@@ -10,11 +10,12 @@ import {useProductContext} from "../context/ProductContext";
 import {STATE, useThemeContext} from "../context/ThemeContext";
 
 
+
 export const ListProducts=()=> {
   const {theme}= useThemeContext();
   const navigate = useNavigate();
   const [isloading, setIsLoading] = useState(false);
-  const {products, setProducts}=useProductContext();
+  const {product, setProduct}=useProductContext();
 
   
 
@@ -34,17 +35,17 @@ export const ListProducts=()=> {
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
-    setProducts(getProductMockup);
+    setProduct(getProductMockup);
       setIsLoading(false);
     }, 500);
-  }, [setProducts]);
+  }, [setProduct]);
 
   if (isloading) {
     return <CircularProgress color="secondary" />;
 
   }
 
-  console.log('products:', products);
+  console.log('products:', product);
   
   return (
     <div
@@ -55,8 +56,8 @@ export const ListProducts=()=> {
 
 
       {!isloading &&
-        products.length > 0 &&
-        products.map((cardproduct) => (
+        product?.length > 0 &&
+        product.map((cardproduct) => (
            
           <CardProduct 
             key={cardproduct._id}
