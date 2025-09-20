@@ -19,6 +19,7 @@ import {Product} from "./pages/products"
 import { AvailableProducts } from './pages/AvailableProducts/AvailableProducts';
 import { Searcher } from './pages/Searcher/Searcher';
 import { LoadProduct } from './pages/LoadProduct/LoadProduct';
+import { MenuDrawer} from "./components/MenuDrawer";
 
 
 
@@ -26,77 +27,13 @@ function App() {
 
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
- 
-  const navbar=[{
-   path: "/",
-    name:"Listado de producto"
-},
-
-{
-  path:"/searcher",
-  name:"Buscar producto"
-},
-
-{
-  path: "/availableproducts",
-  name: "Productos Disponibles"
-},
-
-{
-  path: "/loadProduct",
-  name: "Cargar Producto"
-},
-];
-
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
-    setIsOpenDrawer(open);
-  };
-
-  const list = (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {navbar.map(
-          ({path, name}, index) => (
-            <ListItem key={path} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <NavLink to={path}
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                <ListItemText primary={name} />
-              </NavLink>
-              
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
       
-    </Box>
-  );
-
-  return (
+      return (
     <>
       <Navbar setIsOpenDrawer={setIsOpenDrawer} />
 
-      <Drawer anchor="left" open={isOpenDrawer} onClose={toggleDrawer(false)}>
-        {list}
-      </Drawer>
+     <MenuDrawer isOpenDrawer={isOpenDrawer} setIsOpenDrawer={setIsOpenDrawer}/>
+     
 
       <Routes>
         <Route index path="/" element={<ListProducts />} />

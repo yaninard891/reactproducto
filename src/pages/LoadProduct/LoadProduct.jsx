@@ -11,7 +11,7 @@ const initialState = {
     precio:"",
     cantidad:"",
     categoria:"",
-    estado:" ",
+    estado:"disponible",
     FechaIngreso:"",
     FechaVenta:"",
 };
